@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal Friends Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="login-container">
+    <h2>Login / Register</h2>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Username" required>
+      <button type="submit">Enter Chat</button>
+    </form>
+  </div>
+  <div id="chat-container" style="display: none;">
+    <div id="chat-header">
+      <h1>Terminal Friends Chat</h1>
+      <button id="theme-toggle">Goblin Mode</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" autocomplete="off" placeholder="Type your message...">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  <div id="goblin-overlay"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
