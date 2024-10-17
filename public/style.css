@@ -25,7 +25,9 @@ body {
 }
 
 #login-form input,
-#login-form button {
+#login-form button,
+#register-form input,
+#register-form button {
     margin: 10px 0;
     padding: 5px;
     width: 100%;
@@ -71,6 +73,7 @@ body {
     padding: 10px;
 }
 
+#channel-list,
 #online-users {
     width: 150px;
     border-left: 1px solid #0f0;
@@ -78,8 +81,10 @@ body {
     overflow-y: auto;
 }
 
+#channel-list div,
 #online-users div {
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 #chat-form {
@@ -125,6 +130,37 @@ body {
     border: 1px solid #0f0;
 }
 
+.typing-indicator {
+    font-style: italic;
+    color: #888;
+}
+
+.channel.new-message {
+    font-weight: bold;
+    color: #ff0;
+}
+
+.reply {
+    margin-left: 20px;
+    border-left: 2px solid #0f0;
+    padding-left: 10px;
+}
+
+.reply-original {
+    font-style: italic;
+    opacity: 0.7;
+}
+
+#create-channel-form {
+    margin-top: 10px;
+    display: flex;
+}
+
+#create-channel-form input {
+    flex-grow: 1;
+    margin-right: 5px;
+}
+
 /* Goblin mode */
 body.goblin-mode {
     background-color: #1a0000;
@@ -151,6 +187,7 @@ body.goblin-mode #theme-toggle,
 body.goblin-mode #chat-input,
 body.goblin-mode #chat-form button,
 body.goblin-mode #online-users,
+body.goblin-mode #channel-list,
 body.goblin-mode #file-button {
     border-color: #ff0000;
 }
@@ -208,22 +245,26 @@ body.goblin-mode #goblin-overlay {
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar,
-body.goblin-mode #online-users::-webkit-scrollbar {
+body.goblin-mode #online-users::-webkit-scrollbar,
+body.goblin-mode #channel-list::-webkit-scrollbar {
     width: 10px;
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar-track,
-body.goblin-mode #online-users::-webkit-scrollbar-track {
+body.goblin-mode #online-users::-webkit-scrollbar-track,
+body.goblin-mode #channel-list::-webkit-scrollbar-track {
     background: #1a0000;
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar-thumb,
-body.goblin-mode #online-users::-webkit-scrollbar-thumb {
+body.goblin-mode #online-users::-webkit-scrollbar-thumb,
+body.goblin-mode #channel-list::-webkit-scrollbar-thumb {
     background: #ff0000;
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar-thumb:hover,
-body.goblin-mode #online-users::-webkit-scrollbar-thumb:hover {
+body.goblin-mode #online-users::-webkit-scrollbar-thumb:hover,
+body.goblin-mode #channel-list::-webkit-scrollbar-thumb:hover {
     background: #cc0000;
 }
 
@@ -242,5 +283,64 @@ body.goblin-mode #online-users::-webkit-scrollbar-thumb:hover {
     }
     to {
         opacity: 0;
+    }
+}
+
+.flying-cube {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #ff0000;
+    animation: flyingCube 5s linear infinite;
+}
+
+@keyframes flyingCube {
+    0% {
+        transform: translate(-100%, -100%) rotate(0deg);
+    }
+    25% {
+        transform: translate(100%, -100%) rotate(90deg);
+    }
+    50% {
+        transform: translate(100%, 100%) rotate(180deg);
+    }
+    75% {
+        transform: translate(-100%, 100%) rotate(270deg);
+    }
+    100% {
+        transform: translate(-100%, -100%) rotate(360deg);
+    }
+}
+
+.flying-gorilla {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: url("https://media.giphy.com/media/3o7TKFxGF6W3PSbm0w/giphy.gif")
+        no-repeat;
+    background-size: contain;
+    animation: flyingGorilla 10s linear infinite;
+}
+
+@keyframes flyingGorilla {
+    0% {
+        top: -150px;
+        left: -150px;
+    }
+    25% {
+        top: 100%;
+        left: 25%;
+    }
+    50% {
+        top: 50%;
+        left: 100%;
+    }
+    75% {
+        top: 0;
+        left: 75%;
+    }
+    100% {
+        top: -150px;
+        left: -150px;
     }
 }
