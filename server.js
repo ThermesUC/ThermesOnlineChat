@@ -1,41 +1,41 @@
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
-const path = require('path');
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-// Add this route handler for the root path
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const users = new Set();
+const users = new Map();
 
-io.on('connection', (socket) => {
-  console.log('A user connected');
+io.on("connection", (socket) => {
+  console.log("A user connected");
 
-  socket.on('user joined', (username) => {
+  socket.on("user joined", (username) => {
     socket.username = username;
-    users.add(username);
-    io.emit('user joined', username);
+    users.set(socket.id, username);
+    io.emit("user joined", username);
+    io.emit("update users", Array.from(users.values()));
   });
 
-  socket.on('chat message', (data) => {
-    io.emit('chat message', data);
+  socket.on("chat message", (data) => {
+    io.emit("chat message", data);
   });
 
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     if (socket.username) {
-      users.delete(socket.username);
-      io.emit('user left', socket.username);
+      users.delete(socket.id);
+      io.emit("user left", socket.username);
+      io.emit("update users", Array.from(users.values()));
     }
-    console.log('User disconnected');
+    console.log("User disconnected");
   });
 });
 
