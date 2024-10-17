@@ -1,4 +1,5 @@
 const socket = io();
+<<<<<<< HEAD
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 const loginContainer = document.getElementById("login-container");
@@ -17,6 +18,18 @@ const createChannelForm = document.getElementById("create-channel-form");
 
 let username = "";
 let isAdmin = false;
+=======
+const loginForm = document.getElementById('login-form');
+const loginContainer = document.getElementById('login-container');
+const chatContainer = document.getElementById('chat-container');
+const chatForm = document.getElementById('chat-form');
+const chatInput = document.getElementById('chat-input');
+const chatMessages = document.getElementById('chat-messages');
+const themeToggle = document.getElementById('theme-toggle');
+const goblinOverlay = document.getElementById('goblin-overlay');
+
+let username = '';
+>>>>>>> parent of adec668 (patch 9.2.11)
 let goblinMode = false;
 let flyingGoblins = [];
 let flashingLights = [];
@@ -24,6 +37,7 @@ let currentChannel = "general";
 let typingTimeout;
 let userColor = "";
 
+<<<<<<< HEAD
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   username = document.getElementById("username").value.trim();
@@ -72,12 +86,23 @@ registerForm.addEventListener("submit", async (e) => {
   } catch (error) {
     console.error("Error:", error);
     alert("An error occurred. Please try again.");
+=======
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  username = document.getElementById('username').value.trim();
+  if (username) {
+    socket.emit('user joined', username);
+    loginContainer.style.display = 'none';
+    chatContainer.style.display = 'flex';
+    addMessage(`Welcome, ${username}! You've joined the chat.`);
+>>>>>>> parent of adec668 (patch 9.2.11)
   }
 });
 
-chatForm.addEventListener("submit", (e) => {
+chatForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (chatInput.value) {
+<<<<<<< HEAD
     socket.emit("chat message", {
       username,
       message: chatInput.value,
@@ -149,13 +174,26 @@ socket.on("reply", (data) => {
 });
 
 socket.on("user joined", (username) => {
+=======
+    socket.emit('chat message', { username, message: chatInput.value });
+    chatInput.value = '';
+  }
+});
+
+socket.on('chat message', (data) => {
+  addMessage(`${data.username}: ${data.message}`);
+});
+
+socket.on('user joined', (username) => {
+>>>>>>> parent of adec668 (patch 9.2.11)
   addMessage(`${username} has joined the chat.`);
 });
 
-socket.on("user left", (username) => {
+socket.on('user left', (username) => {
   addMessage(`${username} has left the chat.`);
 });
 
+<<<<<<< HEAD
 socket.on("update users", (users) => {
   updateOnlineUsers(users);
 });
@@ -185,9 +223,12 @@ socket.on("stop typing", (data) => {
 });
 
 themeToggle.addEventListener("click", () => {
+=======
+themeToggle.addEventListener('click', () => {
+>>>>>>> parent of adec668 (patch 9.2.11)
   goblinMode = !goblinMode;
-  document.body.classList.toggle("goblin-mode");
-  themeToggle.textContent = goblinMode ? "Normal Mode" : "Goblin Mode";
+  document.body.classList.toggle('goblin-mode');
+  themeToggle.textContent = goblinMode ? 'Normal Mode' : 'Goblin Mode';
   if (goblinMode) {
     playGoblinSound();
     startFlyingGoblins();
@@ -202,6 +243,7 @@ themeToggle.addEventListener("click", () => {
   }
 });
 
+<<<<<<< HEAD
 function addMessage(text, file = null, color = "#0f0") {
   const messageElement = document.createElement("div");
   messageElement.classList.add("message");
@@ -227,10 +269,17 @@ function addMessage(text, file = null, color = "#0f0") {
   replyButton.addEventListener("click", () => startReply(text));
   messageElement.appendChild(replyButton);
 
+=======
+function addMessage(text) {
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message');
+  messageElement.textContent = `> ${text}`;
+>>>>>>> parent of adec668 (patch 9.2.11)
   chatMessages.appendChild(messageElement);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+<<<<<<< HEAD
 function addReply(data) {
   const replyElement = document.createElement("div");
   replyElement.classList.add("reply");
@@ -304,6 +353,8 @@ function removeTypingIndicator(username) {
   }
 }
 
+=======
+>>>>>>> parent of adec668 (patch 9.2.11)
 function typeEffect(element, text, index = 0) {
   if (index < text.length) {
     element.textContent += text[index];
@@ -312,16 +363,14 @@ function typeEffect(element, text, index = 0) {
 }
 
 function playGoblinSound() {
-  const audio = new Audio(
-    "https://www.soundjay.com/human/sounds/man-scream-01.mp3",
-  );
+  const audio = new Audio('https://www.soundjay.com/human/sounds/man-scream-01.mp3');
   audio.play();
 }
 
 function startFlyingGoblins() {
   for (let i = 0; i < 5; i++) {
-    const goblin = document.createElement("div");
-    goblin.classList.add("flying-goblin");
+    const goblin = document.createElement('div');
+    goblin.classList.add('flying-goblin');
     goblin.style.top = `${Math.random() * 100}%`;
     goblin.style.left = `${Math.random() * 100}%`;
     goblinOverlay.appendChild(goblin);
@@ -330,14 +379,14 @@ function startFlyingGoblins() {
 }
 
 function stopFlyingGoblins() {
-  flyingGoblins.forEach((goblin) => goblin.remove());
+  flyingGoblins.forEach(goblin => goblin.remove());
   flyingGoblins = [];
 }
 
 function startFlashingLights() {
-  for (let i = 0; i < 20; i++) {
-    const light = document.createElement("div");
-    light.classList.add("flashing-light");
+  for (let i = 0; i < 10; i++) {
+    const light = document.createElement('div');
+    light.classList.add('flashing-light');
     light.style.top = `${Math.random() * 100}%`;
     light.style.left = `${Math.random() * 100}%`;
     goblinOverlay.appendChild(light);
@@ -346,7 +395,7 @@ function startFlashingLights() {
 }
 
 function stopFlashingLights() {
-  flashingLights.forEach((light) => light.remove());
+  flashingLights.forEach(light => light.remove());
   flashingLights = [];
 }
 
@@ -379,42 +428,39 @@ function stopFlyingGorilla() {
 }
 
 // Welcome message
-const welcomeMessage = document.createElement("div");
-welcomeMessage.classList.add("message");
+const welcomeMessage = document.createElement('div');
+welcomeMessage.classList.add('message');
 chatMessages.appendChild(welcomeMessage);
+<<<<<<< HEAD
 typeEffect(
   welcomeMessage,
   "> Welcome to Thermes hackermans! Please login or register to start chatting with your friends.",
 );
+=======
+typeEffect(welcomeMessage, '> Welcome to Terminal Friends Chat! Please login to start chatting with your friends.');
+>>>>>>> parent of adec668 (patch 9.2.11)
 
 // Easter egg: Konami code for instant Goblin Mode
-let konamiCode = [
-  "ArrowUp",
-  "ArrowUp",
-  "ArrowDown",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "ArrowLeft",
-  "ArrowRight",
-  "b",
-  "a",
-];
+let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiIndex = 0;
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener('keydown', (e) => {
   if (e.key === konamiCode[konamiIndex]) {
     konamiIndex++;
     if (konamiIndex === konamiCode.length) {
       goblinMode = true;
-      document.body.classList.add("goblin-mode");
-      themeToggle.textContent = "Normal Mode";
+      document.body.classList.add('goblin-mode');
+      themeToggle.textContent = 'Normal Mode';
       playGoblinSound();
       startFlyingGoblins();
       startFlashingLights();
+<<<<<<< HEAD
       startFlyingCubes();
       startFlyingGorilla();
       addMessage("GOBLIN MODE ACTIVATED!");
+=======
+      addMessage('GOBLIN MODE ACTIVATED!');
+>>>>>>> parent of adec668 (patch 9.2.11)
       konamiIndex = 0;
     }
   } else {

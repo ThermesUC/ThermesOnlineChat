@@ -1,20 +1,34 @@
+<<<<<<< HEAD
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
 const path = require("path");
 const bcrypt = require("bcryptjs");
+=======
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const path = require('path');
+>>>>>>> parent of adec668 (patch 9.2.11)
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
+=======
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+>>>>>>> parent of adec668 (patch 9.2.11)
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+// Add this route handler for the root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+<<<<<<< HEAD
 const users = new Map();
 const channels = ["general", "math"];
 const userChannels = new Map();
@@ -47,12 +61,16 @@ app.post("/login", async (req, res) => {
   }
   res.json({ message: "Login successful", isAdmin: user.isAdmin });
 });
+=======
+const users = new Set();
+>>>>>>> parent of adec668 (patch 9.2.11)
 
-io.on("connection", (socket) => {
-  console.log("A user connected");
+io.on('connection', (socket) => {
+  console.log('A user connected');
 
-  socket.on("user joined", (username) => {
+  socket.on('user joined', (username) => {
     socket.username = username;
+<<<<<<< HEAD
     socket.join("general");
     userChannels.get(username).forEach((channel) => socket.join(channel));
     io.emit("user joined", username);
@@ -103,14 +121,27 @@ io.on("connection", (socket) => {
       ...data,
       color: userColors.get(data.username),
     });
+=======
+    users.add(username);
+    io.emit('user joined', username);
   });
 
-  socket.on("disconnect", () => {
+  socket.on('chat message', (data) => {
+    io.emit('chat message', data);
+>>>>>>> parent of adec668 (patch 9.2.11)
+  });
+
+  socket.on('disconnect', () => {
     if (socket.username) {
+<<<<<<< HEAD
       io.emit("user left", socket.username);
       io.emit("update users", Array.from(users.keys()));
+=======
+      users.delete(socket.username);
+      io.emit('user left', socket.username);
+>>>>>>> parent of adec668 (patch 9.2.11)
     }
-    console.log("User disconnected");
+    console.log('User disconnected');
   });
 });
 
