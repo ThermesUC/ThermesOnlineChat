@@ -1,49 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Thermes hackermans</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div id="login-container">
-            <h2>Login / Register</h2>
-            <form id="login-form">
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Username"
-                    required
-                />
-                <button type="submit">Enter Chat</button>
-            </form>
-        </div>
-        <div id="chat-container" style="display: none">
-            <div id="chat-header">
-                <h1>Thermes hackermans</h1>
-                <button id="theme-toggle">Goblin Mode</button>
-            </div>
-            <div id="chat-content">
-                <div id="chat-messages"></div>
-                <div id="online-users">
-                    <h3>Online Users</h3>
-                </div>
-            </div>
-            <form id="chat-form">
-                <input
-                    type="text"
-                    id="chat-input"
-                    autocomplete="off"
-                    placeholder="Type your message..."
-                />
-                <input type="file" id="file-input" style="display: none" />
-                <button type="button" id="file-button">📎</button>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-        <div id="goblin-overlay"></div>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="script.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thermes hackermans</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <h2>Register</h2>
+    <form id="register-form">
+      <input type="text" id="new-username" placeholder="Username" required>
+      <input type="password" id="new-password" placeholder="Password" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  <div id="chat-container" style="display: none;">
+    <div id="chat-header">
+      <h1>Thermes hackermans - <span id="channel-name">general</span></h1>
+      <button id="theme-toggle">Goblin Mode</button>
+    </div>
+    <div id="chat-content">
+      <div id="channel-list">
+        <h3>Channels</h3>
+      </div>
+      <div id="chat-messages"></div>
+      <div id="online-users">
+        <h3>Online Users</h3>
+      </div>
+    </div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" autocomplete="off" placeholder="Type your message...">
+      <input type="file" id="file-input" style="display: none;">
+      <button type="button" id="file-button">📎</button>
+      <button type="submit">Send</button>
+    </form>
+    <form id="create-channel-form">
+      <input type="text" id="new-channel" placeholder="New Channel Name">
+      <button type="submit">Create Channel</button>
+    </form>
+    <div id="color-picker">
+      <label for="user-color">Choose your color:</label>
+      <input type="color" id="user-color" value="#00ff00">
+    </div>
+  </div>
+  <div id="goblin-overlay"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

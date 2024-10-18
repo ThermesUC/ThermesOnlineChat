@@ -1,147 +1,253 @@
 body {
-    font-family: "Courier New", Courier, monospace;
-    background-color: #000;
-    color: #0f0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    transition: background-color 0.3s;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #000;
+  color: #0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.3s;
 }
 
-#login-container,
-#chat-container {
-    width: 80%;
-    max-width: 800px;
-    border: 1px solid #0f0;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
+#login-container, #chat-container {
+  width: 80%;
+  max-width: 800px;
+  border: 1px solid #0f0;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px #0f0;
 }
 
 #login-container {
-    text-align: center;
+  text-align: center;
 }
 
-#login-form input,
-#login-form button {
-    margin: 10px 0;
-    padding: 5px;
-    width: 100%;
-    box-sizing: border-box;
+#login-form input, #login-form button,
+#register-form input, #register-form button {
+  margin: 10px 0;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
 }
 
 #chat-container {
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #0f0;
 }
 
 #chat-header h1 {
-    margin: 0;
-    font-size: 1.5em;
+  margin: 0;
+  font-size: 1.5em;
+  text-shadow: 0 0 5px #0f0;
 }
 
 #theme-toggle {
-    background-color: #000;
-    color: #0f0;
-    border: 1px solid #0f0;
-    padding: 5px 10px;
-    cursor: pointer;
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#theme-toggle:hover {
+  background-color: #0f0;
+  color: #000;
 }
 
 #chat-content {
-    display: flex;
-    flex-grow: 1;
-    overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 #chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
 }
 
-#online-users {
-    width: 150px;
-    border-left: 1px solid #0f0;
-    padding: 10px;
-    overflow-y: auto;
+#channel-list, #online-users {
+  width: 150px;
+  border-left: 1px solid #0f0;
+  padding: 10px;
+  overflow-y: auto;
 }
 
-#online-users div {
-    margin-bottom: 5px;
+#channel-list div, #online-users div {
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#channel-list div:hover, #online-users div:hover {
+  text-shadow: 0 0 5px #0f0;
 }
 
 #chat-form {
-    display: flex;
-    border-top: 1px solid #0f0;
+  display: flex;
+  border-top: 1px solid #0f0;
 }
 
 #chat-input {
-    flex-grow: 1;
-    background-color: #000;
-    color: #0f0;
-    border: none;
-    padding: 10px;
-    font-family: inherit;
+  flex-grow: 1;
+  background-color: #000;
+  color: #0f0;
+  border: none;
+  padding: 10px;
+  font-family: inherit;
 }
 
 #chat-form button {
-    background-color: #000;
-    color: #0f0;
-    border: none;
-    border-left: 1px solid #0f0;
-    padding: 10px;
-    cursor: pointer;
+  background-color: #000;
+  color: #0f0;
+  border: none;
+  border-left: 1px solid #0f0;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#chat-form button:hover {
+  background-color: #0f0;
+  color: #000;
 }
 
 #file-button {
-    background-color: #000;
-    color: #0f0;
-    border: none;
-    border-left: 1px solid #0f0;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.2em;
+  background-color: #000;
+  color: #0f0;
+  border: none;
+  border-left: 1px solid #0f0;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: all 0.3s;
+}
+
+#file-button:hover {
+  background-color: #0f0;
+  color: #000;
 }
 
 .message {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .message img {
-    max-width: 200px;
-    max-height: 200px;
-    border: 1px solid #0f0;
+  max-width: 200px;
+  max-height: 200px;
+  border: 1px solid #0f0;
+  box-shadow: 0 0 5px #0f0;
+}
+
+.typing-indicator {
+  font-style: italic;
+  color: #888;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.channel.new-message {
+  font-weight: bold;
+  color: #ff0;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 5px #ff0; }
+  50% { text-shadow: 0 0 10px #ff0; }
+  100% { text-shadow: 0 0 5px #ff0; }
+}
+
+.reply {
+  margin-left: 20px;
+  border-left: 2px solid #0f0;
+  padding-left: 10px;
+}
+
+.reply-original {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+#create-channel-form {
+  margin-top: 10px;
+  display: flex;
+}
+
+#create-channel-form input {
+  flex-grow: 1;
+  margin-right: 5px;
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 5px;
+}
+
+#create-channel-form button {
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#create-channel-form button:hover {
+  background-color: #0f0;
+  color: #000;
+}
+
+.delete-channel {
+  background-color: transparent;
+  color: #f00;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.delete-channel:hover {
+  color: #ff0;
 }
 
 /* Goblin mode */
 body.goblin-mode {
-    background-color: #1a0000;
-    color: #ff0000;
-    animation: flashingBackground 0.1s infinite;
+  background-color: #1a0000;
+  color: #ff0000;
+  animation: flashingBackground 0.1s infinite;
 }
 
 @keyframes flashingBackground {
-    0% {
-        background-color: #1a0000;
-    }
-    50% {
-        background-color: #330000;
-    }
-    100% {
-        background-color: #1a0000;
-    }
+  0% { background-color: #1a0000; }
+  50% { background-color: #330000; }
+  100% { background-color: #1a0000; }
 }
 
 body.goblin-mode #chat-container,
@@ -151,96 +257,135 @@ body.goblin-mode #theme-toggle,
 body.goblin-mode #chat-input,
 body.goblin-mode #chat-form button,
 body.goblin-mode #online-users,
+body.goblin-mode #channel-list,
 body.goblin-mode #file-button {
-    border-color: #ff0000;
+  border-color: #ff0000;
 }
 
 body.goblin-mode #chat-input,
 body.goblin-mode #chat-form button,
 body.goblin-mode #theme-toggle,
 body.goblin-mode #file-button {
-    background-color: #330000;
-    color: #ff0000;
+  background-color: #330000;
+  color: #ff0000;
 }
 
 #goblin-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1000;
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
 }
 
 body.goblin-mode #goblin-overlay {
-    display: block;
+  display: block;
 }
 
 .flying-goblin {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: url("https://media.giphy.com/media/3oEjI53nBYOOEQgDcY/giphy.gif")
-        no-repeat;
-    background-size: contain;
-    animation: flyingGoblin 3s linear infinite;
-    filter: hue-rotate(0deg) brightness(1.2);
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('https://media.giphy.com/media/3oEjI53nBYOOEQgDcY/giphy.gif') no-repeat;
+  background-size: contain;
+  animation: flyingGoblin 3s linear infinite;
+  filter: hue-rotate(0deg) brightness(1.2);
 }
 
 @keyframes flyingGoblin {
-    0% {
-        transform: translate(-100%, -100%) rotate(0deg);
-    }
-    25% {
-        transform: translate(100%, -100%) rotate(90deg);
-    }
-    50% {
-        transform: translate(100%, 100%) rotate(180deg);
-    }
-    75% {
-        transform: translate(-100%, 100%) rotate(270deg);
-    }
-    100% {
-        transform: translate(-100%, -100%) rotate(360deg);
-    }
+  0% { transform: translate(-100%, -100%) rotate(0deg); }
+  25% { transform: translate(100%, -100%) rotate(90deg); }
+  50% { transform: translate(100%, 100%) rotate(180deg); }
+  75% { transform: translate(-100%, 100%) rotate(270deg); }
+  100% { transform: translate(-100%, -100%) rotate(360deg); }
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar,
-body.goblin-mode #online-users::-webkit-scrollbar {
-    width: 10px;
+body.goblin-mode #online-users::-webkit-scrollbar,
+body.goblin-mode #channel-list::-webkit-scrollbar {
+  width: 10px;
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar-track,
-body.goblin-mode #online-users::-webkit-scrollbar-track {
-    background: #1a0000;
+body.goblin-mode #online-users::-webkit-scrollbar-track,
+body.goblin-mode #channel-list::-webkit-scrollbar-track {
+  background: #1a0000;
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar-thumb,
-body.goblin-mode #online-users::-webkit-scrollbar-thumb {
-    background: #ff0000;
+body.goblin-mode #online-users::-webkit-scrollbar-thumb,
+body.goblin-mode #channel-list::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }
 
 body.goblin-mode #chat-messages::-webkit-scrollbar-thumb:hover,
-body.goblin-mode #online-users::-webkit-scrollbar-thumb:hover {
-    background: #cc0000;
+body.goblin-mode #online-users::-webkit-scrollbar-thumb:hover,
+body.goblin-mode #channel-list::-webkit-scrollbar-thumb:hover {
+  background: #cc0000;
 }
 
 .flashing-light {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #ff0000;
-    animation: flash 0.5s infinite alternate;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  animation: flash 0.5s infinite alternate;
 }
 
 @keyframes flash {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.flying-cube {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #ff0000;
+  animation: flyingCube 5s linear infinite;
+}
+
+@keyframes flyingCube {
+  0% { transform: translate(-100%, -100%) rotate(0deg); }
+  25% { transform: translate(100%, -100%) rotate(90deg); }
+  50% { transform: translate(100%, 100%) rotate(180deg); }
+  75% { transform: translate(-100%, 100%) rotate(270deg); }
+  100% { transform: translate(-100%, -100%) rotate(360deg); }
+}
+
+.flying-gorilla {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: url('https://media.giphy.com/media/3o7TKFxGF6W3PSbm0w/giphy.gif') no-repeat;
+  background-size: contain;
+  animation: flyingGorilla 10s linear infinite;
+}
+
+@keyframes flyingGorilla {
+  0% { top: -150px; left: -150px; }
+  25% { top: 100%; left: 25%; }
+  50% { top: 50%; left: 100%; }
+  75% { top: 0; left: 75%; }
+  100% { top: -150px; left: -150px; }
+}
+
+#color-picker {
+  margin-top: 10px;
+}
+
+#color-picker label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#color-picker input {
+  width: 100%;
+  padding: 5px;
+  background-color: #000;
+  border: 1px solid #0f0;
 }
